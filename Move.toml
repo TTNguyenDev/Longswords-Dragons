@@ -1,0 +1,13 @@
+[package]
+name = 'dragon'
+version = '1.0.0'
+[dependencies.AptosFramework]
+git = 'https://github.com/aptos-labs/aptos-core.git'
+rev = 'main'
+subdir = 'aptos-move/framework/aptos-framework'
+
+[addresses]
+diamond_clicker = "0xe9fa01aaa1a483c6c598d470ae9b8174226590499b25812d8f0e86192a3b8711"
+
+[dependencies]
+MoveStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/move-stdlib", rev = "main" }
