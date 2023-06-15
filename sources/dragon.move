@@ -1,13 +1,47 @@
 module dragon::game {
     use std::signer;
     use std::vector;
+    use aptos_std::simple_map::{Self, SimpleMap};
+    use aptos_token_objects::collection;
 
     use aptos_framework::timestamp;
 
     #[test_only]
     use aptos_framework::account;
 
+    // Structs 
+    struct Game has key {
+        collections: SimpleMap<address, Object<Collection>> 
+    }
+
     // Functions 
+    public fun create_dragon_collection(admin: &signer) {
+        //Only Admin function 
+        let admin_addr = signer::address_of(admin);
+        assert!(admin_addr == @admin, 0);
+
+        //Create collections
+        // It can generate an object signer to add resources to the collection object.
+        let collection_constructor_ref = collection::create_unlimited_collection(
+            admin,
+            "Description",
+            "My Collection",
+            royalty,
+            "https://mycollection.com",
+        );
+
+        let collections = simple
+        //Create new game
+        let game = Game {
+            collections: simple_map::create();
+        }
+
+        // Constructor ref can be exchanged for signer to add resources to the collection object.
+        // let collection_signer = &object::generate_signer(collection_constructor_ref);
+        // move_to(collection_signer, MyCollectionMetadata { creation_timestamp_secs: timestamp::now_seconds() } })
+    }
+
+
     public fun create_dragon() {
     /*
     Create a new collection of monsters
@@ -50,4 +84,13 @@ module dragon::game {
     Creates a new equipment token with combined properties
      */
     }
+
+    ///NOTE: 
+    /// NFTs: 
+    /// - rồng collections
+    /// - thời gian breed => lock trong time chich
+    /// - rong con collections
+    /// - kiem collections
+    /// - kiem moi collections
+    
 }
